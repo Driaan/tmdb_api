@@ -322,6 +322,24 @@ class Tv {
         ._query('$_endPoint/latest', optionalQueries: ['language=$language']);
   }
 
+  ///Get the videos that have been added to a movie.
+  ///
+  ///## Parameters
+  ///`movieId`: Id of a given movie.
+  ///
+  ///## Implementation
+  ///
+  ///```
+  /// Map result = await tmdb.v3.movies.getVideos(103);
+  ///```
+  ///
+  Future<Map> getVideos(int tvId) {
+    if (tvId == null) {
+      throw NullValueException('movieId == null is true');
+    }
+    return _v3._query('$_endPoint/$tvId/videos');
+  }
+
   /// Get a list of the current popular movies on TMDb.
   /// This list updates daily.
   ///
